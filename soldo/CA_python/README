@@ -1,0 +1,87 @@
+$Id: README,v 1.5 2004/04/28 21:36:30 deepay Exp $
+
+$Log: README,v $
+Revision 1.5  2004/04/28 21:36:30  deepay
+*** empty log message ***
+
+Revision 1.4  2004/04/28 20:20:13  deepay
+*** empty log message ***
+
+Revision 1.3  2004/04/28 19:23:53  deepay
+stuff for mex
+
+Revision 1.2  2004/02/04 09:43:46  spapadim
+Misc fixes/checks
+
+Revision 1.1  2004/02/04 07:52:37  spapadim
+Initial checkin
+
+
+DO THIS BEFORE YOU RUN ANYTHING:
+--------------------------------
+$ mex cc_col_nz.c
+
+If this doesn't work,
+$ cp cc_col_nz_supersededByMex.m cc_col_nz.m
+
+but this will be slower. Note that using "mex" might require
+linking to strange matlab libraries. In CMU, this works (if required):
+
+$ export LD_LIBRARY_PATH=/afs/cs/local/matlab/i386_linux2/6.5/lib/matlab6/extern/lib/glnx86:$LD_LIBRARY_PATH
+
+
+----------------------------------------------------------------------------
+
+The standard approach is:
+(1) Load in the matrix:  Suppose file "mymatrix" contains lines of the form
+    from to
+    where all "from" and "to" nodes are numbered greater than 0 (this is
+    necessary). Now, do:
+    $ matlab -nosplash -nojvm
+    >> s=dlmread('mymatrix'); s(:,3)=1; A=spconvert(s);
+               // This creates the unweighted matrix.
+    >> isSelfGraph = true;    // if the data "mymatrix" is a self-graph, OR
+    >> isSelfGraph = false;   // otherwise.
+
+(2) Find the clusters:
+    >> [k,l,Nx,Ny,Qx,Qy,Dnz] = cc_search(A,'hellscream',isSelfGraph);
+               // k is the number of row clusters.
+	       // l is the number of column clusters (=k for self-graph)
+	       // Nx is the number of rows per row cluster
+	       // Ny is the number of columns per col cluster 
+	       //       (=Nx for self-graph)
+	       // Qx is the vector of row clusters that each row belongs to
+	       // Qy is the vector of col clusters that each col belongs to
+	       //       (=Qx for self-graph)
+	       // Dnz is the number of nonzeros in each "block" of the 
+	       // reordered adjacency matrix.
+
+(3) To print out the clusters:
+    >> fid = fopen('output_row_clusters','W');
+    >> for i=1:length(Qx);
+       fprintf(fid,'%d\n',Qx(i));
+       end
+
+       // Similarly for column clusters.
+
+(4) For further analysis:
+    >> [Out, Costs] = cc_outliers(A,k,l,Nx,Ny,Qx,Qy,Dnz,isSelfGraph);
+              // Out gives the blocks where the outlier edges reside.
+	      //     If multiple edges exist in the block, then that
+	      //     block will be named multiple times.
+	      // Costs is the cost associated with the edges.
+    >> [DistGroup, DistPerNode, DistRelative] = cc_distances(k,Nx,Dnz);
+              // DistRelative is the only one we need. It signifies
+	      //     relative distances between groups. ONLY FOR SELF_GRAPHS!
+
+
+Some boilerplate graphs can be obtained by:
+    >> new_graphs; load SynGraphs;
+    >> whos -file SynGraphs
+              // shows some of the graphs you can play with...
+	      // (Steps 2 and 3 above). These are NOT self-graphs.
+
+    >> new_symmetric_graphs;load SynSymmetricGraphs;
+    >> whos -file SynSymmetricGraphs
+              // for some self-graphs
+	      
