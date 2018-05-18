@@ -1,6 +1,6 @@
 # compute the top neighbors for each victim
 
-# number of top neighbors that we want to compute (i.e. k)
+# number of top neighbors that we want to compute (i.e. k for k-NN)
 top_neighbors = 5
 
 # create a dictionary of the form : 'victim', [neighbor1, neighbor2, ...]

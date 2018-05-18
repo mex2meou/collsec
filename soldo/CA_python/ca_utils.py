@@ -2,8 +2,8 @@ def get_densities(idx_list, victims, attackers):
     from oct2py import octave
     from scipy import sparse
     from itertools import product
-    # TODO: add the right to the folder CA_python
-    octave.addpath('/Users/lotm/collsec/soldo/CA_python/')
+    # TODO: add the right to the folder CA_python, e.g.
+    octave.addpath('/home/andrew/collsec/soldo/CA_python/')
     
     import time
     import numpy as np
