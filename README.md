@@ -25,52 +25,6 @@ and extract its contents (i.e., the '.pkl' files) in the ’data’ folder of th
 
 https://www.dropbox.com/s/kmiejttl4ceufpp/data.zip
 
-## Hybrid Scheme
-
-To replicate the experiments for our proposed hybrid scheme simply execute the following steps:
-
-### Agglomerative Clustering:
-
->> cd agglomerative
-
->> python agglomerative.py
-
-### K-Means Clustering:
-
->> cd kmeans
-
->> python kmeans.py
-
-### Nearest Neighbors:
-
->> cd knn
-
->> python knn.py
-
-By default is configured we utilize a 5-day training window and a 1-day testing one 
-as done in previous work. To modify this setting, adjust the parameters 
-indicated in the files ’utils/util.py’ and ’utils/time_series.py’.
-
-## Controlled Data Sharing by Freudiger et al.
-
-https://link.springer.com/chapter/10.1007%2F978-3-319-20550-2_17
-
-To repeat the experiments for the Controlled Data Sharing system by Freudiger et al., perform the following steps:
-
-### Approach A
-
->> cd dimva-global
-
->> python dimva-global.py
-
-### Approach B
-
->> cd dimva−local
-
->> python dimva−local.py
-
-Note. To configure the length of the training and testing windows modify the file ’utils/dimva_util.py’.
-
 ## Implicit Recommendation by Soldo et al.
 
 https://ieeexplore.ieee.org/abstract/document/5461982/
@@ -100,7 +54,54 @@ in the file ’soldo/CA_python/ca_utils.py’ (line 6). To run the experiments:
 >> python soldo.py
 
 To configure the parameter k of the k-NN algorithm included in the ensemble method modify the file 
-’soldo/top_neighbors.py’.
+’soldo/top_neighbors.py’. If experiments for various values of k are executed, modify the file 'soldo/soldo.py' 
+to prevent the CA algorithm from running again.
+
+## Controlled Data Sharing by Freudiger et al.
+
+https://link.springer.com/chapter/10.1007%2F978-3-319-20550-2_17
+
+To repeat the experiments for the Controlled Data Sharing system by Freudiger et al., perform the following steps:
+
+### Approach A
+
+>> cd dimva-global
+
+>> python dimva-global.py
+
+### Approach B
+
+>> cd dimva−local
+
+>> python dimva−local.py
+
+Note. To configure the length of the training and testing windows modify the file ’utils/dimva_util.py’.
+
+## Hybrid Scheme
+
+To replicate the experiments for our proposed hybrid scheme simply execute the following steps:
+
+### Agglomerative Clustering:
+
+>> cd agglomerative
+
+>> python agglomerative.py
+
+### K-Means Clustering:
+
+>> cd kmeans
+
+>> python kmeans.py
+
+### Nearest Neighbors:
+
+>> cd knn
+
+>> python knn.py
+
+By default is configured we utilize a 5-day training window and a 1-day testing one 
+as done in previous work. To modify this setting, adjust the parameters 
+indicated in the files ’utils/util.py’ and ’utils/time_series.py’.
 
 ## Results
 
