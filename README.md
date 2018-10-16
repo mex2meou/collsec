@@ -3,7 +3,7 @@
 Repository for the code of the paper titled "On Collaborative Predictive Blacklisting" by Luca Melis, Apostolos Pyrgelis 
 and Emiliano De Cristofaro (UCL). A preliminary version of the paper can be found on the following link:
 
-https://arxiv.org/abs/1512.04114
+https://arxiv.org/abs/1810.02649
 
 ## Setup
 
