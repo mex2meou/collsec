@@ -53,9 +53,9 @@ in the file ’soldo/CA_python/ca_utils.py’ (line 6). To run the experiments:
 
 >> python soldo.py
 
-To configure the parameter k of the k-NN algorithm included in the ensemble method modify the file 
-’soldo/top_neighbors.py’. If experiments for various values of k are executed, modify the file 'soldo/soldo.py' 
-to prevent the CA algorithm from running again.
+To configure the parameter k of the k-NN algorithm included in the ensemble method modify the file ’soldo/top_neighbors.py’. If experiments for various values of k are executed, modify the file 'soldo/soldo.py' to prevent the CA algorithm from running again.
+
+Note: Approximate execution time on the whole dataset is ~4h per k parameter.
 
 ## Controlled Data Sharing by Freudiger et al.
 
@@ -69,13 +69,17 @@ To repeat the experiments for the Controlled Data Sharing system by Freudiger et
 
 >> python dimva-global.py
 
+Note: Approximate execution time on the whole dataset is ~2h.
+
 ### Approach B
 
 >> cd dimva−local
 
 >> python dimva−local.py
 
-Note. To configure the length of the training and testing windows modify the file ’utils/dimva_util.py’.
+Note: Approximate execution time on the whole dataset is ~4h.
+
+By default the code of Freudiger et al. is configured we utilize a 5-day training window and a 1-day testing one. To configure the length of the training and testing windows modify the file ’utils/dimva_util.py’
 
 ## Hybrid Scheme
 
@@ -87,11 +91,15 @@ To replicate the experiments for our proposed hybrid scheme simply execute the f
 
 >> python agglomerative.py
 
+Note: Approximate execution time on the whole dataset is ~1.6d.
+
 ### K-Means Clustering:
 
 >> cd kmeans
 
 >> python kmeans.py
+
+Note: Approximate execution time on the whole dataset is ~1.8d.
 
 ### Nearest Neighbors:
 
@@ -99,9 +107,9 @@ To replicate the experiments for our proposed hybrid scheme simply execute the f
 
 >> python knn.py
 
-By default is configured we utilize a 5-day training window and a 1-day testing one 
-as done in previous work. To modify this setting, adjust the parameters 
-indicated in the files ’utils/util.py’ and ’utils/time_series.py’.
+Note: Approximate execution time on the whole dataset is ~3.5d.
+
+By default the hybrid scheme code is configured to utilize a 5-day training window and a 1-day testing one as done in previous work. To modify this setting, adjust the parameters indicated in the files ’utils/util.py’ and ’utils/time_series.py’. 
 
 ## Results
 
@@ -117,3 +125,7 @@ with matplotlib and obtain the figures presented in the paper, execute:
 >> python dimva_local_plots.py
 
 >> python soldo_plots.py
+
+Note: To plot the results without running X server the use of the matplotlib's 'Agg' backend is required. For example check:
+
+https://stackoverflow.com/questions/4931376/generating-matplotlib-graphs-without-a-running-x-server
