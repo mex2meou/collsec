@@ -23,7 +23,7 @@ All the above packages can be installed via the tool ’pip’.
 To obtain the DShield dataset that was used in our experiments, use the following download link 
 and extract its contents (i.e., the '.pkl' files) in the ’data’ folder of the repository:
 
-https://www.dropbox.com/s/kmiejttl4ceufpp/data.zip
+https://zenodo.org/record/2393806
 
 ## Implicit Recommendation by Soldo et al.
 
